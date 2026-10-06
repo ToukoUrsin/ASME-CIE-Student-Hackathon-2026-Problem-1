@@ -185,7 +185,7 @@ def validate_submission(
             continue
         require_exact_keys(operation, expected_keys, location, errors)
         operation_number = operation.get("operation_number")
-        if operation_number != index:
+        if isinstance(operation_number, bool) or not isinstance(operation_number, int) or operation_number != index:
             errors.append(f"{location}.operation_number must be {index}.")
 
         if difficulty == "easy":
